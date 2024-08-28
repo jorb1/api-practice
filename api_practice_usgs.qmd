@@ -1,0 +1,38 @@
+---
+title: "API Practice EDS 214"
+author: "BJ"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(dataRetrieval)
+
+```
+
+```{r}
+#set the parameters of the query
+
+siteNumber <- "11118500"
+parameterCd <- "00060" # Discharge
+startDate <- "2023-08-19"
+endDate <- "2023-08-22"
+
+```
+
+```{r}
+#This runs the query with the API, using the parameters you set
+discharge <- readNWISdv(siteNumber, parameterCd, startDate, endDate)
+```
+
+```{r}
+#plot the data we queried
+ggplot(data = discharge, aes(x = Date, y = X_00060_00003)) +
+  geom_line()
+```
+
+
+
